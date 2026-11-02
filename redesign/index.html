@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bäckerei Schnell – Berliner Brot seit 1958</title>
-<meta name="description" content="Bäckerei Schnell: Berliner Familienbäckerei seit 1958. Mit Filialen in allen Stadtteilen und Korn aus der Mühle im Spreewald.">
+<title>Bäckerei Schnell – Die Berliner Bäckerei seit 1897</title>
+<meta name="description" content="Bäckerei Schnell: Handwerksbäckerei in 5. Generation mit rund 30 Filialen in Berlin. Korn aus der Spreewaldmühle in Burg, Backstube in Weißensee.">
 <meta name="theme-color" content="#141110">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,6 +36,7 @@
   h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -0.035em; line-height: .95; }
   .serif { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; font-style: italic; letter-spacing: -0.01em; }
   .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+  section[id] { scroll-margin-top: 90px; }
   .tag {
     display: inline-flex; align-items: center; gap: 8px;
     font-size: 13px; font-weight: 600; letter-spacing: .02em;
@@ -49,10 +50,7 @@
     font-weight: 600; font-size: 16px; white-space: nowrap;
     transition: transform .3s var(--ease), background .3s var(--ease);
   }
-  .btn .arrow {
-    width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
-    transition: transform .3s var(--ease);
-  }
+  .btn .arrow { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; transition: transform .3s var(--ease); }
   .btn:hover .arrow { transform: rotate(-45deg); }
   .btn-light { background: var(--surface); color: var(--ink); }
   .btn-light .arrow { background: var(--ink); color: var(--surface); }
@@ -66,7 +64,7 @@
   /* ---------- Nav ---------- */
   .nav {
     position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 50;
-    width: min(calc(100% - 32px), 1080px);
+    width: min(calc(100% - 32px), 1120px);
     display: flex; align-items: center; justify-content: space-between; gap: 16px;
     padding: 8px 8px 8px 22px; border-radius: 999px;
     background: rgba(20, 17, 16, .55); color: #fff;
@@ -77,8 +75,8 @@
   .nav.scrolled { background: rgba(20, 17, 16, .85); }
   .brand { font-weight: 800; font-size: 22px; letter-spacing: -0.04em; display: flex; align-items: baseline; gap: 2px; }
   .brand i { color: var(--accent); font-style: normal; }
-  .nav ul { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
-  .nav ul a { display: block; padding: 10px 16px; border-radius: 999px; font-size: 15px; font-weight: 500; color: rgba(255,255,255,.8); transition: background .2s, color .2s; }
+  .nav ul { display: flex; gap: 2px; list-style: none; margin: 0; padding: 0; }
+  .nav ul a { display: block; padding: 10px 14px; border-radius: 999px; font-size: 15px; font-weight: 500; color: rgba(255,255,255,.8); transition: background .2s, color .2s; }
   .nav ul a:hover { background: rgba(255,255,255,.1); color: #fff; }
   .nav .btn { height: 44px; padding: 0 20px; background: var(--accent); color: #fff; font-size: 15px; }
   .burger { display: none; width: 44px; height: 44px; border-radius: 50%; border: 0; background: rgba(255,255,255,.12); cursor: pointer; }
@@ -95,99 +93,115 @@
   @keyframes zoom { to { transform: scale(1); } }
   .hero-inner::after {
     content: ""; position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(20,17,16,.35) 0%, rgba(20,17,16,0) 30%, rgba(20,17,16,.15) 55%, rgba(20,17,16,.85) 100%);
+    background: linear-gradient(180deg, rgba(20,17,16,.45) 0%, rgba(20,17,16,.1) 30%, rgba(20,17,16,.25) 55%, rgba(20,17,16,.88) 100%);
   }
   .hero-content { position: relative; z-index: 2; padding: 0 40px 40px; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: end; }
-  .hero h1 { font-size: clamp(56px, 10.5vw, 168px); font-weight: 800; }
+  .hero h1 { font-size: clamp(52px, 9.5vw, 156px); font-weight: 800; }
   .hero h1 .serif { font-weight: 400; color: var(--wheat); }
-  .hero-side { max-width: 340px; display: grid; gap: 22px; padding-bottom: 12px; }
-  .hero-side p { margin: 0; font-size: 18px; color: rgba(255,255,255,.85); }
+  .hero-side { max-width: 360px; display: grid; gap: 22px; padding-bottom: 12px; }
+  .hero-side p { margin: 0; font-size: 18px; color: rgba(255,255,255,.88); }
   .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
-  .hero-top { position: absolute; z-index: 2; top: 104px; left: 40px; right: 40px; display: flex; justify-content: space-between; font-size: 14px; color: rgba(255,255,255,.8); }
+  .hero-top { position: absolute; z-index: 2; top: 104px; left: 40px; right: 40px; display: flex; justify-content: space-between; font-size: 14px; color: rgba(255,255,255,.85); }
   .hero-top .live { display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px; border-radius: 999px; background: rgba(255,255,255,.14); backdrop-filter: blur(10px); }
   .hero-top .live::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #7ee08a; box-shadow: 0 0 0 4px rgba(126,224,138,.25); }
 
   /* ---------- Marquee ---------- */
   .marquee { overflow: hidden; padding: 28px 0; border-bottom: 1px solid var(--line); }
-  .marquee-track { display: flex; gap: 48px; width: max-content; animation: scroll 38s linear infinite; }
+  .marquee-track { display: flex; gap: 48px; width: max-content; animation: scroll 40s linear infinite; }
   .marquee span { font-size: clamp(28px, 4vw, 48px); font-weight: 700; letter-spacing: -0.03em; white-space: nowrap; display: flex; align-items: center; gap: 48px; }
   .marquee span::after { content: "✺"; color: var(--accent); font-size: .7em; }
   .marquee .serif { font-weight: 400; }
   @keyframes scroll { to { transform: translateX(-50%); } }
 
-  /* ---------- Statement ---------- */
+  /* ---------- Statement + stats ---------- */
   .statement { padding: 140px 0 120px; }
   .statement-grid { display: grid; grid-template-columns: 220px 1fr; gap: 40px; }
   .statement p.big { margin: 0; font-size: clamp(32px, 4.4vw, 64px); font-weight: 600; line-height: 1.04; letter-spacing: -0.035em; }
   .statement p.big .muted { color: #b8aea3; }
   .statement p.big .serif { color: var(--accent); }
-  .pill-img { display: inline-block; width: 1.9em; height: .82em; border-radius: 999px; vertical-align: -0.06em; overflow: hidden; position: relative; background: #b9773a; }
-  .pill-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; color: transparent; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 88px; }
+  .stat { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 26px; }
+  .stat b { display: block; font-size: clamp(40px, 4.6vw, 64px); font-weight: 800; letter-spacing: -0.05em; line-height: 1; }
+  .stat span { display: block; margin-top: 10px; color: var(--ink-2); font-size: 15px; }
 
   /* ---------- Bento ---------- */
   .section-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 40px; }
   .section-head h2 { font-size: clamp(40px, 6vw, 88px); }
-  .section-head p { max-width: 360px; margin: 0; color: var(--ink-2); }
+  .section-head p { max-width: 380px; margin: 0; color: var(--ink-2); }
   .bento { display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-rows: 300px; gap: 14px; }
   .card { position: relative; border-radius: var(--r); overflow: hidden; padding: 32px; display: flex; flex-direction: column; justify-content: space-between; }
   .card h3 { font-size: clamp(30px, 3vw, 44px); }
-  .card p { margin: 0; max-width: 34ch; }
+  .card p { margin: 0; max-width: 36ch; }
   .card:hover .photo img { transform: scale(1.05); }
   .card .photo { position: absolute; inset: 0; }
   .card.has-photo { color: #fff; }
-  .card.has-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,17,16,0) 35%, rgba(20,17,16,.78) 100%); }
+  .card.has-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,17,16,.1) 25%, rgba(20,17,16,.82) 100%); }
   .card > *:not(.photo) { position: relative; z-index: 2; }
-  .c-sortiment { grid-column: span 7; grid-row: span 2; }
-  .c-stadt { grid-column: span 5; background: var(--ink); color: var(--surface); }
-  .c-stadt p { color: rgba(255,253,248,.7); }
-  .c-spree { grid-column: span 5; }
-  .c-year { grid-column: span 4; background: var(--wheat); }
-  .c-year .num { font-size: clamp(80px, 9vw, 132px); font-weight: 800; letter-spacing: -0.06em; line-height: .8; }
-  .c-filialen { grid-column: span 8; background: var(--accent); color: #fff; flex-direction: row; align-items: flex-end; gap: 24px; }
-  .c-filialen h3 { font-size: clamp(36px, 4.4vw, 64px); }
-  .c-filialen p { color: rgba(255,255,255,.85); margin-top: 14px; }
-  .card .kicker { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .12em; opacity: .75; }
+  .c-a { grid-column: span 7; grid-row: span 2; }
+  .c-b { grid-column: span 5; background: var(--ink); color: var(--surface); }
+  .c-b p { color: rgba(255,253,248,.72); }
+  .c-c { grid-column: span 5; }
+  .c-d { grid-column: span 4; background: var(--wheat); }
+  .c-d .num { font-size: clamp(48px, 5vw, 76px); font-weight: 800; letter-spacing: -0.06em; line-height: .85; }
+  .c-e { grid-column: span 8; background: var(--accent); color: #fff; flex-direction: row; align-items: flex-end; gap: 24px; }
+  .c-e h3 { font-size: clamp(36px, 4.4vw, 64px); }
+  .c-e p { color: rgba(255,255,255,.88); margin-top: 14px; }
+  .card .kicker { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .12em; opacity: .8; }
   .card-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; }
-  .icon-circle { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.1); }
 
-  /* ---------- Horizontal gallery ---------- */
-  .rail-section { padding: 140px 0 0; }
-  .rail {
-    display: grid; grid-auto-flow: column; grid-auto-columns: minmax(280px, 26%);
-    gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory;
-    padding: 0 24px 24px; scrollbar-width: none;
-    max-width: var(--max); margin: 0 auto;
-  }
-  .rail::-webkit-scrollbar { display: none; }
-  .rail figure { margin: 0; scroll-snap-align: start; }
-  .rail .photo { aspect-ratio: 3 / 4; border-radius: var(--r); }
-  .rail figure:hover img { transform: scale(1.05); }
-  .rail figcaption { display: flex; justify-content: space-between; padding: 14px 6px 0; font-weight: 600; }
-  .rail figcaption span { color: var(--muted); font-weight: 500; }
-  .rail-ctrl { display: flex; gap: 8px; }
-  .rail-ctrl button {
-    width: 54px; height: 54px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface);
-    font-size: 20px; cursor: pointer; transition: background .2s, color .2s; color: var(--ink);
-  }
-  .rail-ctrl button:hover { background: var(--ink); color: var(--surface); }
+  /* ---------- Rohstoffe ---------- */
+  .roh { padding: 140px 0 0; }
+  .roh-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .roh-item { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 32px; }
+  .roh-item .n { font-size: 14px; font-weight: 600; color: var(--accent); }
+  .roh-item h3 { font-size: 28px; margin: 40px 0 14px; line-height: 1.05; }
+  .roh-item p { margin: 0; color: var(--ink-2); }
+  .quote { margin: 64px 0 0; font-size: clamp(30px, 4vw, 56px); font-weight: 600; letter-spacing: -0.035em; line-height: 1.05; text-align: center; }
+  .quote .serif { color: var(--accent); }
 
-  /* ---------- Story ---------- */
+  /* ---------- Filialen ---------- */
+  .fil { padding: 140px 0 0; }
+  .fil-tools { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 20px; }
+  .search {
+    flex: 1; min-width: 240px; display: flex; align-items: center; gap: 12px;
+    height: 58px; padding: 0 22px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line);
+  }
+  .search input { flex: 1; border: 0; background: none; font: inherit; font-size: 17px; color: var(--ink); outline: none; min-width: 0; }
+  .search:focus-within { border-color: var(--ink); }
+  .count { font-size: 15px; color: var(--muted); }
+  .fil-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+  .shop { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 12px; transition: border-color .2s, transform .3s var(--ease); }
+  .shop:hover { border-color: var(--ink); transform: translateY(-3px); }
+  .shop h3 { font-size: 20px; letter-spacing: -0.02em; line-height: 1.15; }
+  .shop .plz { color: var(--muted); font-size: 15px; }
+  .shop .hours { font-size: 14px; color: var(--ink-2); background: var(--bg); border-radius: 12px; padding: 10px 12px; }
+  .shop .hours div { display: flex; justify-content: space-between; gap: 10px; }
+  .shop .actions { display: flex; gap: 8px; margin-top: auto; flex-wrap: wrap; }
+  .shop .actions a { font-size: 14px; font-weight: 600; padding: 9px 14px; border-radius: 999px; border: 1px solid var(--line); }
+  .shop .actions a:hover { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+  .shop .actions a.primary { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+  .fil-note { margin-top: 18px; font-size: 14px; color: var(--muted); }
+  .empty { padding: 40px; text-align: center; color: var(--muted); grid-column: 1 / -1; }
+
+  /* ---------- Story / Timeline ---------- */
   .story { padding: 140px 0; }
   .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
   .story-sticky { position: sticky; top: 100px; }
   .story-sticky .photo { aspect-ratio: 4 / 5; border-radius: var(--r); }
+  .story-sticky .photo img { transition: opacity .5s var(--ease), transform 1.2s var(--ease); }
   .story-sticky .badge {
     position: absolute; left: 20px; bottom: 20px; z-index: 2;
-    background: var(--surface); border-radius: 18px; padding: 14px 18px; font-size: 14px;
+    background: var(--surface); border-radius: 18px; padding: 14px 18px; font-size: 14px; max-width: calc(100% - 40px);
   }
-  .story-sticky .badge b { display: block; font-size: 18px; }
+  .story-sticky .badge b { display: block; font-size: 22px; letter-spacing: -0.03em; }
   .story h2 { font-size: clamp(44px, 5.5vw, 80px); margin: 20px 0 28px; }
-  .story .lead { font-size: 20px; color: var(--ink-2); margin: 0 0 56px; }
+  .story .lead { font-size: 20px; color: var(--ink-2); margin: 0 0 48px; }
   .steps { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
-  .steps li { display: grid; grid-template-columns: 120px 1fr; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--line); }
-  .steps .when { font-size: 28px; font-weight: 700; letter-spacing: -0.03em; }
-  .steps h3 { font-size: 22px; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 6px; }
+  .steps li { display: grid; grid-template-columns: 96px 1fr; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--line); cursor: default; transition: opacity .3s; }
+  .steps .when { font-size: 26px; font-weight: 700; letter-spacing: -0.03em; }
+  .steps li.active .when { color: var(--accent); }
   .steps p { margin: 0; color: var(--ink-2); }
+  .steps .thumb { display: none; }
 
   /* ---------- Eco ---------- */
   .eco { margin: 0 12px; border-radius: var(--r); background: var(--ink); color: var(--surface); padding: 120px 0; }
@@ -196,32 +210,51 @@
   .eco-head { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: end; margin-bottom: 64px; }
   .eco h2 { font-size: clamp(40px, 5.4vw, 80px); margin-top: 20px; }
   .eco h2 .serif { color: var(--sage); }
-  .eco-head p { margin: 0; color: rgba(255,253,248,.7); font-size: 18px; }
+  .eco-head p { margin: 0; color: rgba(255,253,248,.72); font-size: 18px; }
   .measures { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,.12); border-radius: 20px; overflow: hidden; }
-  .measures div { background: var(--ink); padding: 32px; min-height: 180px; display: flex; flex-direction: column; justify-content: space-between; transition: background .3s; }
+  .measures div { background: var(--ink); padding: 32px; min-height: 170px; display: flex; flex-direction: column; justify-content: space-between; transition: background .3s; }
   .measures div:hover { background: #1f1a18; }
   .measures span { font-size: 14px; color: var(--sage); font-weight: 600; }
   .measures b { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; }
-  .eco-foot { margin-top: 32px; font-size: 14px; color: rgba(255,253,248,.6); }
+  .eco-foot { margin-top: 32px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; font-size: 14px; color: rgba(255,253,248,.65); }
+  .efre { background: #fff; border-radius: 12px; padding: 10px 14px; }
+  .efre img { height: 52px; width: auto; }
 
-  /* ---------- CTA ---------- */
-  .cta { padding: 160px 0 140px; text-align: center; }
-  .cta h2 { font-size: clamp(52px, 9vw, 150px); }
+  /* ---------- Jobs ---------- */
+  .jobs { padding: 140px 0 0; }
+  .jobs-card { display: grid; grid-template-columns: 1.1fr 1fr; border-radius: var(--r); overflow: hidden; background: var(--wheat); }
+  .jobs-card .photo { min-height: 460px; }
+  .jobs-body { padding: 56px; display: flex; flex-direction: column; justify-content: space-between; gap: 32px; }
+  .jobs-body h2 { font-size: clamp(40px, 5vw, 72px); }
+  .jobs-body p { margin: 0; color: var(--ink-2); font-size: 18px; }
+  .perks { display: grid; gap: 10px; list-style: none; margin: 0; padding: 0; }
+  .perks li { display: flex; gap: 12px; align-items: flex-start; font-weight: 600; }
+  .perks li::before { content: "✓"; flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--ink); color: var(--wheat); display: grid; place-items: center; font-size: 14px; }
+
+  /* ---------- Contact / CTA ---------- */
+  .cta { padding: 160px 0 140px; }
+  .cta-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px; align-items: end; }
+  .cta h2 { font-size: clamp(52px, 8vw, 132px); }
   .cta h2 .serif { color: var(--accent); }
-  .cta p { color: var(--ink-2); font-size: 20px; max-width: 46ch; margin: 28px auto 40px; }
+  .contact-box { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 32px; display: grid; gap: 22px; }
+  .contact-box h3 { font-size: 22px; letter-spacing: -0.02em; line-height: 1.2; }
+  .contact-box a.big { font-size: clamp(24px, 2.6vw, 32px); font-weight: 700; letter-spacing: -0.03em; display: block; }
+  .contact-box a.big:hover { color: var(--accent); }
+  .contact-box table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .contact-box td { padding: 6px 0; border-bottom: 1px solid var(--line); }
+  .contact-box td:last-child { text-align: right; font-weight: 600; }
+  .contact-box .small { font-size: 14px; color: var(--muted); }
 
   /* ---------- Footer ---------- */
   footer { margin: 0 12px 12px; border-radius: var(--r); background: var(--accent); color: #fff; padding: 72px 0 28px; overflow: hidden; }
   .foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; font-size: 15px; }
-  footer h4 { margin: 0 0 14px; font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; opacity: .7; }
+  footer h4 { margin: 0 0 14px; font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; opacity: .75; }
   footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
   footer a:hover { text-decoration: underline; }
   footer address { font-style: normal; }
-  .foot-claim { font-size: 28px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.1; max-width: 16ch; }
+  .foot-claim { font-size: 28px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.1; max-width: 18ch; }
   .wordmark { font-size: clamp(90px, 21vw, 330px); font-weight: 800; letter-spacing: -0.07em; line-height: .78; margin: 72px 0 0 -0.04em; }
-  .foot-bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 36px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.25); font-size: 13px; }
-  .credits { font-size: 12px; opacity: .75; margin-top: 10px; }
-  .credits a { text-decoration: underline; }
+  .foot-bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 36px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.3); font-size: 13px; }
 
   /* ---------- Reveal ---------- */
   .js .reveal { opacity: 0; transform: translateY(36px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
@@ -230,17 +263,20 @@
   /* ---------- Responsive ---------- */
   @media (max-width: 1024px) {
     .bento { grid-auto-rows: 260px; }
-    .c-sortiment { grid-column: span 12; }
-    .c-stadt, .c-spree { grid-column: span 6; }
-    .c-year { grid-column: span 5; }
-    .c-filialen { grid-column: span 7; flex-direction: column; align-items: flex-start; }
-    .story-grid, .eco-head { grid-template-columns: 1fr; }
-    .story-sticky { position: relative; top: 0; }
-    .measures { grid-template-columns: repeat(2, 1fr); }
-    .rail { grid-auto-columns: minmax(260px, 40%); }
+    .c-a { grid-column: span 12; }
+    .c-b, .c-c { grid-column: span 6; }
+    .c-d { grid-column: span 5; }
+    .c-e { grid-column: span 7; flex-direction: column; align-items: flex-start; }
+    .story-grid, .eco-head, .cta-grid, .jobs-card { grid-template-columns: 1fr; }
+    .story-sticky { display: none; }
+    .steps li { grid-template-columns: 96px 1fr 120px; align-items: center; }
+    .steps .thumb { display: block; aspect-ratio: 4 / 3; border-radius: 12px; }
+    .measures, .roh-grid { grid-template-columns: repeat(2, 1fr); }
+    .stats { grid-template-columns: repeat(2, 1fr); }
     .foot-grid { grid-template-columns: 1fr 1fr; }
+    .jobs-card .photo { min-height: 320px; }
   }
-  @media (max-width: 820px) {
+  @media (max-width: 860px) {
     .nav ul, .nav .btn { display: none; }
     .burger { display: block; }
     .nav.open { border-radius: 28px; flex-wrap: wrap; padding-bottom: 16px; }
@@ -257,25 +293,29 @@
     .wrap { padding: 0 16px; }
     .hero { padding: 8px; }
     .hero-inner { min-height: calc(100svh - 16px); }
+    .stats { margin-top: 56px; }
+    .stat { padding: 20px; }
     .bento { grid-auto-rows: auto; }
     .bento .card { grid-column: span 12; min-height: 260px; padding: 24px; }
-    .c-sortiment { min-height: 440px !important; }
-    .rail { grid-auto-columns: 78%; padding: 0 16px 20px; }
-    .rail-ctrl { display: none; }
-    .steps li { grid-template-columns: 1fr; gap: 6px; }
-    .measures { grid-template-columns: 1fr; }
+    .c-a { min-height: 440px !important; }
+    .roh-grid, .measures { grid-template-columns: 1fr; }
+    .roh-item h3 { margin-top: 24px; }
+    .steps li { grid-template-columns: 72px 1fr; gap: 14px; }
+    .steps .thumb { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
+    .steps .when { font-size: 22px; }
     .measures div { min-height: 0; gap: 18px; padding: 24px; }
     .eco { margin: 0 8px; padding: 80px 0; }
+    .jobs-body { padding: 28px; }
     footer { margin: 0 8px 8px; }
     .foot-grid { grid-template-columns: 1fr; }
-    .story, .rail-section { padding-top: 96px; }
+    .story, .roh, .fil, .jobs { padding-top: 96px; }
     .cta { padding: 110px 0 96px; }
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .marquee-track, .hero-inner .photo img { animation: none; }
     .js .reveal { opacity: 1; transform: none; transition: none; }
-    .photo img, .btn, .btn .arrow { transition: none; }
+    .photo img, .btn, .btn .arrow, .shop { transition: none; }
   }
 </style>
 <script>document.documentElement.classList.add('js');</script>
@@ -285,12 +325,13 @@
 <nav class="nav" id="nav" aria-label="Hauptnavigation">
   <a class="brand" href="#top" aria-label="Bäckerei Schnell – Startseite">Schnell<i>.</i></a>
   <ul>
-    <li><a href="#sortiment">Sortiment</a></li>
-    <li><a href="#backstube">Backstube</a></li>
-    <li><a href="#geschichte">Geschichte</a></li>
-    <li><a href="#nachhaltigkeit">Nachhaltigkeit</a></li>
+    <li><a href="#filialen">Filialen</a></li>
+    <li><a href="#rohstoffe">Rohstoffe</a></li>
+    <li><a href="#geschichte">Unternehmen</a></li>
+    <li><a href="#jobs">Jobs</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
   </ul>
-  <a class="btn" href="https://www.schnell.berlin/">Filiale finden</a>
+  <a class="btn" href="#filialen">Filiale finden</a>
   <button class="burger" aria-label="Menü" aria-expanded="false" id="burger"><span></span><span></span></button>
 </nav>
 
@@ -299,18 +340,18 @@
   <!-- Hero -->
   <header class="hero">
     <div class="hero-inner">
-      <div class="photo"><img src="https://images.unsplash.com/photo-1508616185939-efe767994166?auto=format&fit=crop&w=2000&q=75" alt="Brötchen und Brote in Körben in einer deutschen Bäckerei" fetchpriority="high"></div>
+      <div class="photo"><img src="https://www.schnell.berlin/files/schnell/images/Bilder/HOME/Bannergrafik1_Home.png" data-fallback="https://images.unsplash.com/photo-1508616185939-efe767994166?auto=format&fit=crop&w=2000&q=75" alt="Bäckerei Schnell" fetchpriority="high"></div>
       <div class="hero-top">
-        <span class="live">Heute frisch gebacken</span>
-        <span class="loc">Berlin · seit 1958</span>
+        <span class="live">Rund 30 Filialen in Berlin</span>
+        <span class="loc">Handwerksbäckerei · seit 1897</span>
       </div>
       <div class="hero-content">
-        <h1>Berliner<br>Brot. <span class="serif">Seit 1958.</span></h1>
+        <h1>Die Berliner<br>Bäckerei <span class="serif">Schnell.</span></h1>
         <div class="hero-side">
-          <p>Die Berliner Bäckerei Schnell – mit Filialen in allen Stadtteilen und Korn aus der Mühle im Spreewald.</p>
+          <p>Hier sind wir zuhause – mit zahlreichen Filialen in allen Stadtteilen. Im Spreewald steht die Mühle, aus der wir das Korn beziehen.</p>
           <div class="hero-actions">
-            <a class="btn btn-light" href="https://www.schnell.berlin/">Nächste Filiale <span class="arrow">→</span></a>
-            <a class="btn btn-glass" href="#sortiment">Sortiment</a>
+            <a class="btn btn-light" href="#filialen">Unsere Filialen <span class="arrow">→</span></a>
+            <a class="btn btn-glass" href="#jobs">Jobs</a>
           </div>
         </div>
       </div>
@@ -320,20 +361,27 @@
   <!-- Marquee -->
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
-      <span>Frisch gebacken</span><span class="serif">Korn aus dem Spreewald</span><span>In allen Stadtteilen</span><span class="serif">Familienbäckerei</span><span>Seit 1958</span>
-      <span>Frisch gebacken</span><span class="serif">Korn aus dem Spreewald</span><span>In allen Stadtteilen</span><span class="serif">Familienbäckerei</span><span>Seit 1958</span>
+      <span>Wir lieben das Backhandwerk</span><span class="serif">Korn aus der Spreewaldmühle</span><span>5. Generation</span><span class="serif">In Berlin zuhause</span><span>Handwerk ist Handarbeit</span>
+      <span>Wir lieben das Backhandwerk</span><span class="serif">Korn aus der Spreewaldmühle</span><span>5. Generation</span><span class="serif">In Berlin zuhause</span><span>Handwerk ist Handarbeit</span>
     </div>
   </div>
 
   <!-- Statement -->
   <section class="statement">
-    <div class="wrap statement-grid">
-      <div><span class="tag">Unser Prinzip</span></div>
-      <p class="big reveal">
-        Hier sind wir zuhause <span class="pill-img"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=300&q=70" alt=""></span>
-        mit Filialen in allen Stadtteilen. <span class="muted">Im Spreewald steht die Mühle, aus der wir das Korn beziehen.</span>
-        <span class="serif">Gegensätze,</span> die sich anziehen. Und ergänzen.
-      </p>
+    <div class="wrap">
+      <div class="statement-grid">
+        <div><span class="tag">Unser Prinzip</span></div>
+        <p class="big reveal">
+          In Berlin sind wir zuhause. <span class="muted">Aus dem Spreewald kommen unsere Rohstoffe.</span>
+          <span class="serif">Gegensätze,</span> die sich anziehen. Und ergänzen.
+        </p>
+      </div>
+      <div class="stats">
+        <div class="stat reveal"><b>1897</b><span>gegründet von Karl Schnell</span></div>
+        <div class="stat reveal"><b>5.</b><span>Generation im Familienbesitz</span></div>
+        <div class="stat reveal"><b>~30</b><span>eigene Filialen in Berlin</span></div>
+        <div class="stat reveal"><b>24 h</b><span>dürfen unsere Teige reifen</span></div>
+      </div>
     </div>
   </section>
 
@@ -342,93 +390,113 @@
     <div class="wrap">
       <div class="section-head reveal">
         <h2>Zeit für <span class="serif">mehr.</span></h2>
-        <p>Neues Sortiment, neu gestaltete Filialen – lernt uns neu kennen.</p>
+        <p>Das neue Sortiment erleben – jetzt in vielen Filialen. Und lernt uns neu kennen in unseren neu gestalteten Filialen.</p>
       </div>
       <div class="bento">
-        <a class="card has-photo c-sortiment reveal" href="#backstube">
-          <div class="photo"><img src="https://images.unsplash.com/photo-1760822601183-4a75e9389f59?auto=format&fit=crop&w=1400&q=75" alt="Frisch gebackene Brote in der Auslage einer Bäckerei" loading="lazy"></div>
-          <span class="kicker">Neu</span>
+        <a class="card has-photo c-a reveal" href="#filialen">
+          <div class="photo"><img src="https://www.schnell.berlin/assets/images/9/Bild1-17a62b17.jpg" data-fallback="https://images.unsplash.com/photo-1760822601183-4a75e9389f59?auto=format&fit=crop&w=1400&q=75" alt="Bäckerei Schnell" loading="lazy"></div>
+          <span class="kicker">Zeit für mehr</span>
           <div class="card-row">
             <div>
               <h3>Das neue Sortiment<br><span class="serif">erleben.</span></h3>
               <p style="margin-top:12px">Jetzt in vielen unserer Filialen.</p>
             </div>
-            <span class="btn btn-light">Entdecken <span class="arrow">→</span></span>
+            <span class="btn btn-light">Filiale finden <span class="arrow">→</span></span>
           </div>
         </a>
-        <div class="card c-stadt reveal">
-          <div class="icon-circle" aria-hidden="true">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f0c56b" stroke-width="2"><path d="M3 21h18M5 21V10h4v11M10 21V4h4v17M15 21v-8h4v8"/></svg>
-          </div>
+        <div class="card c-b reveal">
+          <span class="kicker">Unser Handwerk</span>
           <div>
-            <h3>Die Stadt</h3>
-            <p style="margin-top:10px">Berlin ist unser Zuhause – mit Filialen in allen Stadtteilen.</p>
+            <h3>Handwerk ist bei uns Handarbeit.</h3>
+            <p style="margin-top:10px">Täglich frische Brote, Brötchen, Kuchen und Teilchen – darauf sind wir stolz.</p>
           </div>
         </div>
-        <div class="card has-photo c-spree reveal">
-          <div class="photo"><img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&w=1000&q=75" alt="Brot in einem Weidenkorb" loading="lazy"></div>
-          <span class="kicker">Herkunft</span>
+        <div class="card has-photo c-c reveal">
+          <div class="photo"><img src="https://www.schnell.berlin/assets/images/f/Bild2-494eec1d.jpg" data-fallback="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&w=1000&q=75" alt="Bäckerei Schnell" loading="lazy"></div>
+          <span class="kicker">Zeit zum Wohlfühlen</span>
           <div>
-            <h3>Der Spreewald</h3>
-            <p style="margin-top:10px">Hier steht die Mühle, aus der wir unser Korn beziehen.</p>
+            <h3>Neu gestaltete Filialen</h3>
+            <p style="margin-top:10px">Moderne Fachgeschäfte mit Wohlfühlfaktor.</p>
           </div>
         </div>
-        <div class="card c-year reveal">
-          <span class="kicker">Gegründet</span>
+        <div class="card c-d reveal">
+          <span class="kicker">Unser Brot</span>
           <div>
-            <div class="num">1958</div>
-            <p style="margin-top:14px">Erste Backstube in der Wörther Straße, Prenzlauer Berg.</p>
+            <div class="num">3-Stufen</div>
+            <p style="margin-top:14px">Traditionelle Sauerteigführung – an 7 Tagen in der Woche angefrischt.</p>
           </div>
         </div>
-        <a class="card c-filialen reveal" href="https://www.schnell.berlin/">
+        <a class="card c-e reveal" href="#filialen">
           <div style="flex:1">
-            <span class="kicker">Zeit zum Wohlfühlen</span>
-            <h3 style="margin-top:18px">Unsere Filialen –<br><span class="serif">neu gestaltet.</span></h3>
-            <p>Besucht uns – zum Mitnehmen oder zum Bleiben.</p>
+            <span class="kicker">In allen Stadtteilen</span>
+            <h3 style="margin-top:18px">Finde unsere<br><span class="serif">nächste Filiale.</span></h3>
+            <p>Von Weißensee bis Steglitz, von Spandau bis Marzahn.</p>
           </div>
-          <span class="btn btn-light">Filiale finden <span class="arrow">→</span></span>
+          <span class="btn btn-light">Zur Liste <span class="arrow">→</span></span>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Rail -->
-  <section class="rail-section" id="backstube">
+  <!-- Rohstoffe -->
+  <section class="roh" id="rohstoffe">
     <div class="wrap">
       <div class="section-head reveal">
-        <h2>Aus der <span class="serif">Backstube.</span></h2>
-        <div class="rail-ctrl">
-          <button type="button" aria-label="Zurück" data-dir="-1">←</button>
-          <button type="button" aria-label="Weiter" data-dir="1">→</button>
-        </div>
+        <h2>Unsere Produkte wachsen <span class="serif">im Spreewald.</span></h2>
+        <p>Ausgewählte Zutaten aus kontrolliertem Anbau – aus der Mühle des Spreewalds oder möglichst aus der Region.</p>
       </div>
+      <div class="roh-grid">
+        <article class="roh-item reveal">
+          <span class="n">01 — Rohstoffe</span>
+          <h3>Getreide aus Burg im Spreewald</h3>
+          <p>Alle Getreidesorten werden in der Spreewaldmühle in Burg angebaut – in enger Kooperation mit Landwirten aus der Region. Gemahlen wird schonend in einer alten Mühle mit originalen Mahlwerken.</p>
+        </article>
+        <article class="roh-item reveal">
+          <span class="n">02 — Brot</span>
+          <h3>12 bis 24 Stunden Zeit und Ruhe</h3>
+          <p>Neben der traditionellen 3-Stufen-Sauerteigführung braucht unser Brot vor allem Zeit: So entwickeln die Teige ihr volles Aroma, eine gleichmäßige Porung und eine leckere Krume. Unser Landbrot backen wir nach alten Familienrezepten.</p>
+        </article>
+        <article class="roh-item reveal">
+          <span class="n">03 — Handwerk</span>
+          <h3>Bäcker und Konditoren mit Hingabe</h3>
+          <p>Unsere Bäcker und Konditoren arbeiten täglich mit ihren Händen und erschaffen dabei Meisterwerke. Unser Sortiment ist ständig im Wandel und wird mit viel Handarbeit kreiert.</p>
+        </article>
+      </div>
+      <p class="quote reveal">Bessere Mehlqualität für ein <span class="serif">besseres Backergebnis.</span></p>
     </div>
-    <div class="rail" id="rail">
-      <figure><div class="photo"><img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?auto=format&fit=crop&w=800&q=75" alt="Aufgeschnittenes Brot mit kräftiger Kruste" loading="lazy"></div><figcaption>Brot <span>01</span></figcaption></figure>
-      <figure><div class="photo"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=75" alt="Körnerbrötchen" loading="lazy"></div><figcaption>Brötchen <span>02</span></figcaption></figure>
-      <figure><div class="photo"><img src="https://images.unsplash.com/photo-1517141544637-42b300cb4ee9?auto=format&fit=crop&w=800&q=75" alt="Frisches Gebäck auf hellem Tuch" loading="lazy"></div><figcaption>Gebäck <span>03</span></figcaption></figure>
-      <figure><div class="photo"><img src="https://images.unsplash.com/photo-1549413468-cd78edb7e75c?auto=format&fit=crop&w=800&q=75" alt="Frisch gebackenes Brot auf Jute" loading="lazy"></div><figcaption>Landbrot <span>04</span></figcaption></figure>
-      <figure><div class="photo"><img src="https://images.unsplash.com/photo-1589367920969-ab8e050bbb04?auto=format&fit=crop&w=800&q=75" alt="Dunkles Brot auf einem Holztisch" loading="lazy"></div><figcaption>Vollkorn <span>05</span></figcaption></figure>
-      <figure><div class="photo"><img src="https://images.unsplash.com/photo-1534620808146-d33bb39128b2?auto=format&fit=crop&w=800&q=75" alt="Aufgeschnittene Brote auf heller Fläche" loading="lazy"></div><figcaption>Aufgeschnitten <span>06</span></figcaption></figure>
+  </section>
+
+  <!-- Filialen -->
+  <section class="fil" id="filialen">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2>Unsere <span class="serif">Filialen.</span></h2>
+        <p>Rund 30 Fachgeschäfte in jedem Stadtteil Berlins – und in Bötzow und Falkensee.</p>
+      </div>
+      <div class="fil-tools">
+        <label class="search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input id="q" type="search" placeholder="Straße, PLZ oder Ort suchen …" aria-label="Filiale suchen">
+        </label>
+        <span class="count" id="count"></span>
+      </div>
+      <div class="fil-list" id="list"></div>
+      <p class="fil-note">Öffnungszeiten können abweichen – für genaue Informationen ruft gerne direkt in der Filiale an.</p>
     </div>
   </section>
 
   <!-- Story -->
   <section class="story" id="geschichte">
     <div class="wrap story-grid">
-      <div class="story-sticky reveal">
-        <div class="photo"><img src="https://images.unsplash.com/photo-1586765501019-cbe3973ef8fa?auto=format&fit=crop&w=1100&q=75" alt="Brotlaib auf einem Holztisch" loading="lazy"></div>
-        <div class="badge"><b>Wörther Straße</b>Prenzlauer Berg, 1958</div>
+      <div class="story-sticky">
+        <div class="photo"><img id="storyImg" src="https://www.schnell.berlin/files/schnell/images/Bilder/Timeline/Erste%20Filiale.jpg" alt="Historisches Foto der Bäckerei Schnell" loading="lazy"></div>
+        <div class="badge"><b id="storyYear">1897</b><span id="storyCap">Karl Schnell gründet das Familienunternehmen</span></div>
       </div>
       <div>
-        <span class="tag">Bei Familie Schnell</span>
-        <h2 class="reveal">Eine Berliner <span class="serif">Geschichte.</span></h2>
-        <p class="lead reveal">Am 1. Januar 1958 eröffnete Hans Dieter Schnell seine erste eigene Backstube mit Verkaufsstelle in der Wörther Straße in Berlin Prenzlauer Berg – ein bedeutender Meilenstein in unserer Unternehmensgeschichte.</p>
-        <ol class="steps">
-          <li class="reveal"><span class="when">1958</span><div><h3>Die erste Backstube</h3><p>Backstube mit Verkaufsstelle in Prenzlauer Berg.</p></div></li>
-          <li class="reveal"><span class="when">Heute</span><div><h3>In ganz Berlin</h3><p>Filialen in allen Stadtteilen, Korn aus dem Spreewald, Firmensitz in Weißensee.</p></div></li>
-          <li class="reveal"><span class="when">Neu</span><div><h3>Zeit zum Wohlfühlen</h3><p>Neues Sortiment und neu gestaltete Filialen.</p></div></li>
-        </ol>
+        <span class="tag">Willkommen bei Familie Schnell</span>
+        <h2 class="reveal">Wie alles <span class="serif">begann.</span></h2>
+        <p class="lead reveal">Durch die Generationen wurde nicht nur die Passion weitergegeben, sondern auch alte Familienrezepte. Mit neuen Techniken und Schwung hat Familie Schnell ein erfolgreiches Unternehmen mit rund 30 eigenen Filialen aufgebaut.</p>
+        <ol class="steps" id="steps"></ol>
       </div>
     </div>
   </section>
@@ -439,87 +507,210 @@
       <div class="eco-head">
         <div class="reveal">
           <span class="tag">Nachhaltigkeit</span>
-          <h2>Weniger CO₂. <span class="serif">Gleiches Brot.</span></h2>
+          <h2>Energetische Sanierung. <span class="serif">Weniger CO₂.</span></h2>
         </div>
-        <p class="reveal">Energetische Sanierung der Torsten Schnell GmbH: ein umfassendes Energiekonzept zur deutlichen Reduzierung der CO₂-Emissionen im Unternehmen.</p>
+        <p class="reveal">Die Torsten Schnell GmbH setzt ein umfassendes Energiekonzept um – zur deutlichen Reduzierung der CO₂-Emissionen im Unternehmen.</p>
       </div>
       <div class="measures reveal">
         <div><span>01</span><b>Neue Beleuchtungstechnik</b></div>
-        <div><span>02</span><b>Effiziente Spülmaschinen</b></div>
-        <div><span>03</span><b>Moderne Kälteanlagen &amp; Schockfroster</b></div>
-        <div><span>04</span><b>Neue Gärvollautomaten</b></div>
-        <div><span>05</span><b>Wärmerückgewinnung</b></div>
-        <div><span>06</span><b>Erneuerter Wärmeerzeuger</b></div>
+        <div><span>02</span><b>Neue Spülmaschinen und Kälteanlagen</b></div>
+        <div><span>03</span><b>Neue Gärvollautomaten</b></div>
+        <div><span>04</span><b>Wärmerückgewinnung</b></div>
+        <div><span>05</span><b>Erneuerung des Wärmeerzeugers</b></div>
+        <div><span>06</span><b>Neuanschaffung eines Schockfrosters</b></div>
       </div>
-      <p class="eco-foot">Gefördert im Rahmen des Berliner Programms für Nachhaltige Entwicklung.</p>
+      <div class="eco-foot">
+        <span class="efre"><img src="https://www.schnell.berlin/assets/images/8/EFRE-80c74690.png" alt="Europäischer Fonds für regionale Entwicklung (EFRE)" loading="lazy" onerror="this.parentNode.remove()"></span>
+        <span>Gefördert im Rahmen des Berliner Programms für Nachhaltige Entwicklung (BENE).</span>
+      </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="cta">
-    <div class="wrap reveal">
-      <span class="tag">Ganz in deiner Nähe</span>
-      <h2 style="margin-top:28px">Frisches Brot<br><span class="serif">um die Ecke.</span></h2>
-      <p>Finde die nächste Bäckerei Schnell in deinem Kiez – wir sind in allen Stadtteilen für dich da.</p>
-      <a class="btn btn-dark" href="https://www.schnell.berlin/">Filialfinder öffnen <span class="arrow">→</span></a>
+  <!-- Jobs -->
+  <section class="jobs" id="jobs">
+    <div class="wrap">
+      <div class="jobs-card reveal">
+        <div class="photo"><img src="https://www.schnell.berlin/files/schnell/images/Bilder/Timeline/2020.jpg" data-fallback="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?auto=format&fit=crop&w=1200&q=75" alt="Team der Bäckerei Schnell" loading="lazy"></div>
+        <div class="jobs-body">
+          <div>
+            <span class="tag">Kreativ &amp; lecker – wir sind Berliner!</span>
+            <h2 style="margin-top:22px">Werde Teil <span class="serif">unseres Teams.</span></h2>
+            <p style="margin-top:18px">Ein Traditionsbetrieb, in dem das Handwerk zählt – in der Backstube in Weißensee oder in einem unserer Fachgeschäfte.</p>
+          </div>
+          <ul class="perks">
+            <li>Hochwertige Backwaren, hinter denen du stehen kannst</li>
+            <li>Wertschätzende Führungskräfte und ein guter Draht zum Chef</li>
+            <li>50 % Mitarbeiterrabatt auf unsere Ware</li>
+            <li>Ausbildung zum/zur Bäcker/-in – immer zum 1. August</li>
+          </ul>
+          <a class="btn btn-dark" href="https://schnell.recruitee.com/" style="align-self:flex-start">Offene Stellen <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="cta" id="kontakt">
+    <div class="wrap cta-grid">
+      <div class="reveal">
+        <span class="tag">Kontakt</span>
+        <h2 style="margin-top:28px">Wir freuen uns <span class="serif">auf euch.</span></h2>
+      </div>
+      <div class="contact-box reveal">
+        <div>
+          <h3>Torsten Schnell GmbH</h3>
+          <p class="small" style="margin:6px 0 0">Roelckestr. 77–80, 13088 Berlin-Weißensee</p>
+        </div>
+        <div>
+          <a class="big" href="tel:+493096203040">030 962 030 40</a>
+          <a class="big" href="mailto:info@schnell.berlin">info@schnell.berlin</a>
+          <p class="small" style="margin:6px 0 0">Fax: 030 962 030 41</p>
+        </div>
+        <div>
+          <p class="small" style="margin:0 0 8px">Öffnungszeiten Zentrale</p>
+          <table>
+            <tr><td>Mo – Fr</td><td>06:00 – 16:00</td></tr>
+            <tr><td>Sa</td><td>06:00 – 09:00</td></tr>
+            <tr><td>So</td><td>Büro nicht besetzt</td></tr>
+          </table>
+        </div>
+      </div>
     </div>
   </section>
 </main>
 
-<footer id="kontakt">
+<footer>
   <div class="wrap">
     <div class="foot-grid">
-      <div class="foot-claim">Die Berliner Familienbäckerei seit 1958.</div>
+      <div class="foot-claim">Handwerksbäckerei der Familie Schnell – seit 1897.</div>
       <div>
         <h4>Kontakt</h4>
-        <address>Torsten Schnell GmbH<br>Roelckestr. 77–80<br>13088 Berlin-Weißensee</address>
+        <address>Torsten Schnell GmbH<br>Roelckestr. 77–80<br>13088 Berlin-Weißensee<br><a href="tel:+493096203040">030 962 030 40</a><br><a href="mailto:info@schnell.berlin">info@schnell.berlin</a></address>
       </div>
       <div>
         <h4>Entdecken</h4>
         <ul>
-          <li><a href="#sortiment">Sortiment</a></li>
-          <li><a href="#backstube">Backstube</a></li>
-          <li><a href="#geschichte">Geschichte</a></li>
-          <li><a href="#nachhaltigkeit">Nachhaltigkeit</a></li>
+          <li><a href="#filialen">Unsere Filialen</a></li>
+          <li><a href="#geschichte">Das Unternehmen</a></li>
+          <li><a href="#rohstoffe">Unsere Rohstoffe</a></li>
+          <li><a href="https://schnell.recruitee.com/">Unsere Jobs</a></li>
         </ul>
       </div>
       <div>
         <h4>Rechtliches</h4>
         <ul>
-          <li><a href="#">Impressum</a></li>
-          <li><a href="#">Datenschutz</a></li>
-          <li><a href="#">Karriere</a></li>
+          <li><a href="https://www.schnell.berlin/impressum.html">Impressum</a></li>
+          <li><a href="https://www.schnell.berlin/datenschutz.html">Datenschutz</a></li>
         </ul>
       </div>
     </div>
     <div class="wordmark" aria-hidden="true">Schnell.</div>
     <div class="foot-bottom">
-      <span>© Torsten Schnell GmbH</span>
-      <span>Gebacken in Berlin.</span>
+      <span>© 2026 Torsten Schnell GmbH · HRB 54664, Amtsgericht Charlottenburg</span>
+      <span>In Berlin zuhause. Aus dem Spreewald die Rohstoffe.</span>
     </div>
-    <p class="credits">Fotos (Platzhalter, bitte durch eigene ersetzen): Paul Hermann, Tanya Barrow, Wesual Click, mohamed hassouna, Jude Infantini, Monika Grabkowska, Maria Orlova, Louise Lyshøj, Tommaso Urli – via <a href="https://unsplash.com">Unsplash</a>.</p>
   </div>
 </footer>
 
 <script>
-  // Nav: background on scroll + mobile toggle
+  // ---------- Image fallback (if a source image is unavailable) ----------
+  document.querySelectorAll('img[data-fallback]').forEach(img => {
+    img.addEventListener('error', () => { if (img.dataset.fallback && img.src !== img.dataset.fallback) img.src = img.dataset.fallback; }, { once: true });
+  });
+
+  // ---------- Nav ----------
   const nav = document.getElementById('nav');
   const burger = document.getElementById('burger');
   addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40), { passive: true });
   burger.addEventListener('click', () => burger.setAttribute('aria-expanded', nav.classList.toggle('open')));
-  nav.querySelectorAll('ul a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
 
-  // Reveal on scroll
+  // ---------- Filialen (Quelle: schnell.berlin/unsere-filialen.html) ----------
+  const shops = [
+    { s: 'Roelckestr. 77-80', p: '13088 Berlin', t: '030 96203042', h: [['Mo – Fr', '06:00 – 18:00'], ['Sa', '07:00 – 12:00']] },
+    { s: 'Müllerstr. 10-11', p: '13353 Berlin', t: '030 46112796' },
+    { s: 'Pistoriusstr. 13', p: '13086 Berlin', t: '030 53670215' },
+    { s: 'Schlüterstr. 29', p: '10625 Berlin', t: '030 31996734' },
+    { s: 'Gutschmidtstr. 19', p: '12359 Berlin', t: '030 602583030' },
+    { s: 'Ruschestr. 71-76', p: '10367 Berlin', t: '030 93628841' },
+    { s: 'Tempelhofer Damm 227', p: '12099 Berlin', t: '030 75443829' },
+    { s: 'Bahnhofstr. 95', p: '13129 Berlin', t: '030 47487690' },
+    { s: 'Schillingstr. 1a', p: '10179 Berlin', t: '030 40054965' },
+    { s: 'Nürnberger Str. 61-62', p: '10787 Berlin', t: '030 28438518' },
+    { s: 'Große-Leege-Str. 96', p: '13055 Berlin', t: '030 86204886' },
+    { s: 'Prerower Platz 1', p: '13051 Berlin', t: '030 92402978' },
+    { s: 'Fennstr. 1', p: '16727 Bötzow', t: '03304 205210' },
+    { s: 'Leipziger Str. 45', p: '10117 Berlin', t: '030 20454822' },
+    { s: 'Schalkauer Str. 27', p: '13055 Berlin', t: '030 97996636' },
+    { s: 'Steglitzer Damm 21', p: '12169 Berlin', t: '030 70760155' },
+    { s: 'Schönstr. 8', p: '13086 Berlin', t: '030 92409090', h: [['Täglich', '07:00 – 18:00']] },
+    { s: 'Seddinerstr. 22', p: '10315 Berlin', t: '030 51062384' },
+    { s: 'Friedrich-Wilhelm-Platz 1', p: '12161 Berlin', t: '030 85103368' },
+    { s: 'Berliner Allee 48', p: '13088 Berlin', t: '030 9250652' },
+    { s: 'Gustav-Adolf-Str. 157', p: '13086 Berlin', t: '030 4713007', h: [['Mo – Fr', '06:00 – 18:00'], ['Sa', '07:00 – 16:00'], ['So', '07:00 – 17:00']] },
+    { s: 'Hauptstr. 12a', p: '13127 Berlin', t: '030 51731673' },
+    { s: 'Oudenarder Str. 14', p: '13347 Berlin', t: '030 45606747', h: [['Mo – Fr', '06:30 – 18:30'], ['Sa', '07:00 – 16:00']] },
+    { s: 'Marzahner Promenade 29', p: '12679 Berlin', t: '030 34391270' },
+    { s: 'Wiltbergstr. 25', p: '13125 Berlin', t: '030 94791453' },
+    { s: 'Frankfurter Allee 241', p: '10365 Berlin', t: '030 81477159' },
+    { s: 'Tauroggener Str. 40', p: '10589 Berlin', t: '030 30363679' },
+    { s: 'Spandauer Str. 109', p: '14612 Falkensee', t: '033224 268462' },
+    { s: 'Mahlsdorfer Str. 63', p: '15366 Berlin', t: '030 9952659' },
+    { s: 'Bayreuther Str. 8', p: '10787 Berlin', t: '030 21917998' },
+    { s: 'Ribnitzer Str. 24', p: '13051 Berlin', t: '030 93028149' },
+    { s: 'Einbecker Str. 119', p: '10315 Berlin', mail: 'info@schnell-ihr-baecker.de' },
+  ];
+  const list = document.getElementById('list'), q = document.getElementById('q'), count = document.getElementById('count');
+  const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  function render() {
+    const term = q.value.trim().toLowerCase();
+    const hits = shops.filter(x => !term || (x.s + ' ' + x.p).toLowerCase().includes(term));
+    count.textContent = hits.length + (hits.length === 1 ? ' Filiale' : ' Filialen');
+    list.innerHTML = hits.length ? hits.map(x => {
+      const maps = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Bäckerei Schnell ' + x.s + ', ' + x.p);
+      const hours = x.h ? `<div class="hours">${x.h.map(([d, v]) => `<div><span>${d}</span><b>${v}</b></div>`).join('')}</div>` : '';
+      const tel = x.t ? `<a class="primary" href="tel:${x.t.replace(/\s/g, '')}">${esc(x.t)}</a>` : `<a class="primary" href="mailto:${x.mail}">E-Mail</a>`;
+      return `<article class="shop"><div><h3>${esc(x.s)}</h3><div class="plz">${esc(x.p)}</div></div>${hours}<div class="actions">${tel}<a href="${maps}" target="_blank" rel="noopener">Route →</a></div></article>`;
+    }).join('') : '<div class="empty">Keine Filiale gefunden – versucht es mit einer PLZ oder einem Straßennamen.</div>';
+  }
+  q.addEventListener('input', render);
+  render();
+
+  // ---------- Timeline (Quelle: schnell.berlin/das-unternehmen.html) ----------
+  const T = 'https://www.schnell.berlin/files/schnell/images/Bilder/Timeline/';
+  const steps = [
+    ['1897', 'Karl Schnell, Landwirt und Bäcker in Dablow, gründet das bis heute bestehende Familienunternehmen.', 'Erste%20Filiale.jpg'],
+    ['1916', 'Franz Schnell übernimmt die Ländereien und die Backstube seines Vaters.', 'Erste%20Filiale2.jpg'],
+    ['1958', 'Hans Dieter Schnell eröffnet seine erste eigene Backstube mit Verkaufsstelle in der Wörther Straße in Prenzlauer Berg.', '1962.jpg'],
+    ['1978', 'Größere Produktion mit Verkauf in der Schönhauser Allee.', '1978.jpg'],
+    ['1983', 'Die Bäckerei Schnell im Aufschwung!', '1983.jpg'],
+    ['1991', 'Torsten Schnell übernimmt die Bäckerei zusammen mit seiner Frau Annett Schnell.', '1991.jpg'],
+    ['1995', 'Bau der neuen Produktionsstätte in Weißensee – fertiggestellt 1996.', '1995_1.jpg'],
+    ['2012', 'Die Geschwister Volker Schnell (Lebensmitteltechnologe) und Sarah Schnell (Mittelstandsmanagement) steigen ins Unternehmen ein.', '2012.jpg'],
+    ['Heute', 'Handwerksbäckerei der Familie Schnell mit rund 30 Filialen – in 5. Generation.', '2020.jpg'],
+  ];
+  const stepsEl = document.getElementById('steps');
+  stepsEl.innerHTML = steps.map(([y, txt, img], i) =>
+    `<li class="reveal${i === 0 ? ' active' : ''}" data-i="${i}"><span class="when">${y}</span><p>${txt}</p><div class="photo thumb"><img src="${T + img}" alt="Bäckerei Schnell ${y}" loading="lazy" onerror="this.parentNode.remove()"></div></li>`
+  ).join('');
+  const storyImg = document.getElementById('storyImg'), storyYear = document.getElementById('storyYear'), storyCap = document.getElementById('storyCap');
+  storyImg.addEventListener('error', () => storyImg.parentNode.style.background = '#b9773a');
+  function setStep(i) {
+    const [y, txt, img] = steps[i];
+    stepsEl.querySelectorAll('li').forEach(li => li.classList.toggle('active', Number(li.dataset.i) === i));
+    storyYear.textContent = y; storyCap.textContent = txt;
+    if (!storyImg.src.endsWith(img)) storyImg.src = T + img;
+  }
+  if ('IntersectionObserver' in window) {
+    const so = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && setStep(Number(e.target.dataset.i))), { rootMargin: '-45% 0px -45% 0px' });
+    stepsEl.querySelectorAll('li').forEach(li => so.observe(li));
+  }
+
+  // ---------- Reveal on scroll ----------
   const io = 'IntersectionObserver' in window ? new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }) : null;
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }) : null;
   document.querySelectorAll('.reveal').forEach(el => io ? io.observe(el) : el.classList.add('in'));
-
-  // Gallery arrows
-  const rail = document.getElementById('rail');
-  document.querySelectorAll('.rail-ctrl button').forEach(b => b.addEventListener('click', () => {
-    rail.scrollBy({ left: rail.clientWidth * 0.6 * Number(b.dataset.dir), behavior: 'smooth' });
-  }));
 </script>
 </body>
 </html>
