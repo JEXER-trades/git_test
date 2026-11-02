@@ -94,7 +94,7 @@
     background: radial-gradient(circle at 50% 38%, #f3d48f 0%, var(--wheat) 38%, #c98d3c 100%);
     overflow: hidden;
   }
-  .hero-art svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .hero-art img, .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; color: transparent; }
   .badge {
     position: absolute; bottom: 24px; left: -16px;
     background: var(--paper); border-radius: 14px; padding: 14px 18px;
@@ -135,8 +135,15 @@
   .panel-sortiment { background: var(--wheat); color: var(--rye); }
   .panel-sortiment .eyebrow { color: var(--rye); opacity: .7; }
   .panel-filialen { background: var(--paper); border: 1px solid var(--line); }
-  .panel .deco { position: absolute; right: -40px; bottom: -40px; width: 220px; height: 220px; opacity: .9; }
-  .panel > * { position: relative; }
+  .panel { padding: 0; }
+  .panel .panel-body { padding: 40px 48px 48px; display: flex; flex-direction: column; justify-content: space-between; flex: 1; }
+  .photo { position: relative; overflow: hidden; background: #c98d3c; }
+  .panel .photo { aspect-ratio: 16 / 9; }
+  .gallery { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 16px; padding: 0 0 104px; }
+  .gallery .photo { border-radius: var(--radius); aspect-ratio: 4 / 5; }
+  .gallery .photo:first-child { aspect-ratio: auto; }
+  .history-photo { border-radius: 14px; aspect-ratio: 4 / 3; margin-top: 32px; }
+  .credits { margin-top: 16px; font-size: 12px; opacity: .7; }
   .panel .btn { align-self: flex-start; }
 
   /* ---------- History ---------- */
@@ -204,6 +211,8 @@
     .duo-grid { grid-template-columns: 1fr; }
     .duo-plus { justify-self: center; line-height: 1; }
     .feature-grid { grid-template-columns: 1fr; }
+    .gallery { grid-template-columns: 1fr 1fr; }
+    .gallery .photo:first-child { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
     .foot-grid { grid-template-columns: 1fr 1fr; }
     .history-inner { padding: 40px; gap: 32px; }
   }
@@ -220,7 +229,8 @@
   @media (max-width: 600px) {
     .wrap { padding: 0 16px; }
     .hero { padding: 40px 0 64px; }
-    .panel { padding: 32px; min-height: 0; }
+    .panel { min-height: 0; }
+    .panel .panel-body { padding: 28px 28px 32px; }
     .history-inner { padding: 28px; }
     .measures { grid-template-columns: 1fr; }
     .foot-grid { grid-template-columns: 1fr; }
@@ -270,43 +280,8 @@
         </div>
       </div>
 
-      <div class="hero-art" role="img" aria-label="Illustration: ein Brotlaib vor der Berliner Skyline">
-        <svg viewBox="0 0 400 400" aria-hidden="true">
-          <!-- skyline -->
-          <g fill="#3b2414" opacity=".18">
-            <rect x="20" y="230" width="40" height="120"/>
-            <rect x="66" y="200" width="32" height="150"/>
-            <rect x="300" y="215" width="36" height="135"/>
-            <rect x="342" y="240" width="44" height="110"/>
-            <!-- Fernsehturm -->
-            <rect x="196" y="70" width="8" height="200"/>
-            <circle cx="200" cy="120" r="20"/>
-            <rect x="198" y="40" width="4" height="40"/>
-          </g>
-          <!-- loaf -->
-          <g transform="translate(200 270)">
-            <ellipse cx="0" cy="58" rx="150" ry="16" fill="#3b2414" opacity=".22"/>
-            <path d="M-140 40 C-150 -40 -70 -86 0 -86 C70 -86 150 -40 140 40 C130 60 -130 60 -140 40 Z" fill="#8a4b23"/>
-            <path d="M-128 30 C-134 -34 -64 -72 0 -72 C64 -72 134 -34 128 30" fill="none" stroke="#a9622f" stroke-width="10" opacity=".6"/>
-            <g stroke="#f3d48f" stroke-width="7" stroke-linecap="round" fill="none" opacity=".85">
-              <path d="M-80 -40 C-70 -20 -60 -6 -44 6"/>
-              <path d="M-30 -58 C-20 -36 -8 -20 10 -6"/>
-              <path d="M24 -60 C34 -38 46 -22 62 -10"/>
-              <path d="M74 -44 C84 -26 92 -14 104 -4"/>
-            </g>
-          </g>
-          <!-- wheat ear -->
-          <g transform="translate(330 70) rotate(18)" fill="#3b2414" opacity=".55">
-            <rect x="-1.5" y="0" width="3" height="90"/>
-            <ellipse cx="-7" cy="12" rx="5" ry="10" transform="rotate(-25 -7 12)"/>
-            <ellipse cx="7" cy="12" rx="5" ry="10" transform="rotate(25 7 12)"/>
-            <ellipse cx="-7" cy="30" rx="5" ry="10" transform="rotate(-25 -7 30)"/>
-            <ellipse cx="7" cy="30" rx="5" ry="10" transform="rotate(25 7 30)"/>
-            <ellipse cx="-7" cy="48" rx="5" ry="10" transform="rotate(-25 -7 48)"/>
-            <ellipse cx="7" cy="48" rx="5" ry="10" transform="rotate(25 7 48)"/>
-            <ellipse cx="0" cy="-4" rx="4" ry="9"/>
-          </g>
-        </svg>
+      <div class="hero-art">
+        <img src="https://images.unsplash.com/photo-1508616185939-efe767994166?auto=format&fit=crop&w=1000&q=75" alt="Brötchen und Brote in Körben in einer deutschen Bäckerei" fetchpriority="high">
         <div class="badge">
           <span class="dot"></span>
           <span><strong>Frisch aus der Backstube</strong>Täglich in ganz Berlin</span>
@@ -347,30 +322,37 @@
   <section class="features">
     <div class="wrap feature-grid">
       <article class="panel panel-sortiment" id="sortiment">
+        <div class="photo"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=75" alt="Frische Körnerbrötchen auf einem Tisch" loading="lazy"></div>
+        <div class="panel-body">
         <div>
           <span class="eyebrow">Zeit für mehr</span>
           <h2>Das neue Sortiment erleben.</h2>
           <p>Neue Brote, Brötchen und Kuchen – jetzt in vielen unserer Filialen.</p>
         </div>
         <a class="btn btn-primary" href="#filialen">Sortiment entdecken →</a>
-        <svg class="deco" viewBox="0 0 200 200" aria-hidden="true">
-          <circle cx="100" cy="100" r="90" fill="#3b2414" opacity=".08"/>
-          <path d="M40 120c0-40 30-64 60-64s60 24 60 64c0 10-120 10-120 0z" fill="#8a4b23" opacity=".55"/>
-        </svg>
+        </div>
       </article>
 
       <article class="panel panel-filialen" id="filialen">
+        <div class="photo"><img src="https://images.unsplash.com/photo-1760822601183-4a75e9389f59?auto=format&fit=crop&w=1200&q=75" alt="Frisch gebackene Brote in der Auslage einer Bäckerei" loading="lazy"></div>
+        <div class="panel-body">
         <div>
           <span class="eyebrow">Zeit zum Wohlfühlen</span>
           <h2>Lernt uns neu kennen.</h2>
           <p>Besucht unsere neu gestalteten Filialen – zum Mitnehmen oder zum Bleiben.</p>
         </div>
         <a class="btn btn-ghost" href="https://www.schnell.berlin/">Nächste Filiale finden →</a>
-        <svg class="deco" viewBox="0 0 200 200" aria-hidden="true">
-          <circle cx="100" cy="100" r="90" fill="#e2b65a" opacity=".25"/>
-          <path d="M100 40c-22 0-40 18-40 40 0 30 40 70 40 70s40-40 40-70c0-22-18-40-40-40zm0 54a14 14 0 1 1 0-28 14 14 0 0 1 0 28z" fill="#8a4b23" opacity=".5"/>
-        </svg>
+        </div>
       </article>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section aria-label="Bildergalerie">
+    <div class="wrap gallery">
+      <div class="photo"><img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?auto=format&fit=crop&w=1400&q=75" alt="Aufgeschnittenes Brot mit kräftiger Kruste" loading="lazy"></div>
+      <div class="photo"><img src="https://images.unsplash.com/photo-1517141544637-42b300cb4ee9?auto=format&fit=crop&w=800&q=75" alt="Frisches Gebäck auf hellem Tuch" loading="lazy"></div>
+      <div class="photo"><img src="https://images.unsplash.com/photo-1549413468-cd78edb7e75c?auto=format&fit=crop&w=800&q=75" alt="Frisch gebackenes Brot auf Jute" loading="lazy"></div>
     </div>
   </section>
 
@@ -381,6 +363,7 @@
         <div>
           <div class="year">1958</div>
           <div class="year-sub">Wörther Straße, Prenzlauer Berg</div>
+          <div class="photo history-photo"><img src="https://images.unsplash.com/photo-1586765501019-cbe3973ef8fa?auto=format&fit=crop&w=900&q=75" alt="Brotlaib auf einem Holztisch" loading="lazy"></div>
         </div>
         <div>
           <span class="eyebrow">Bei Familie Schnell</span>
@@ -469,6 +452,9 @@
     <div class="foot-bottom">
       <span>© Torsten Schnell GmbH</span>
       <span>Gebacken in Berlin.</span>
+    </div>
+    <div class="credits">
+      Fotos: Paul Hermann, Wesual Click, Tanya Barrow, Jude Infantini, Monika Grabkowska, Maria Orlova, Tommaso Urli – via <a href="https://unsplash.com" style="text-decoration:underline">Unsplash</a> (Platzhalter, bitte durch eigene Fotos ersetzen).
     </div>
   </div>
 </footer>
