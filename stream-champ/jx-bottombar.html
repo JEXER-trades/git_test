@@ -1,0 +1,181 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JX Gaming Bottom Bar</title>
+<style>
+  /* OBS browser source: 1920x180. One 12s loop: subscribe -> like -> share. */
+  :root { --t: 12s; --cyan: #00E5FF; --purple: #7C4DFF; --pink: #FF2E88; --ink: #06070f; }
+  html, body { margin: 0; padding: 0; width: 1920px; height: 180px; overflow: hidden; background: transparent; position: relative;
+               font-family: "Segoe UI Black", "Arial Black", Impact, sans-serif; color: #fff; }
+
+  .panel { position: absolute; inset: 0; overflow: hidden;
+           background:
+             radial-gradient(ellipse at 15% 50%, rgba(124,77,255,.28), transparent 45%),
+             radial-gradient(ellipse at 85% 50%, rgba(255,46,136,.2), transparent 45%),
+             linear-gradient(180deg, #0b0e24 0%, #070816 100%); }
+  .panel::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 6px;
+                   background: linear-gradient(90deg, var(--cyan), var(--purple), var(--pink), var(--cyan));
+                   background-size: 300% 100%; animation: flow 4s linear infinite; box-shadow: 0 0 18px var(--purple); }
+  @keyframes flow { to { background-position: 300% 0; } }
+  .hexbg { position: absolute; inset: 0; opacity: .5; }
+
+  .logo { position: absolute; left: 6px; top: 2px; width: 190px; height: 190px; border: 0; background: transparent; }
+
+  .live { position: absolute; left: 200px; top: 64px; display: flex; align-items: center; gap: 12px;
+          padding: 8px 20px; border-radius: 30px; background: rgba(255,46,136,.15); border: 2px solid var(--pink);
+          font-size: 28px; letter-spacing: 6px; box-shadow: 0 0 16px rgba(255,46,136,.5); }
+  .live i { width: 16px; height: 16px; border-radius: 50%; background: #ff2a2a; box-shadow: 0 0 10px #ff2a2a;
+            animation: blink 1.2s ease-in-out infinite; }
+  @keyframes blink { 50% { opacity: .2; } }
+
+  /* cards */
+  .card { position: absolute; top: 26px; width: 390px; height: 128px; border-radius: 22px; box-sizing: border-box;
+          background: rgba(10,13,31,.85); border: 2px solid rgba(124,77,255,.5);
+          display: flex; align-items: center; gap: 18px; padding: 0 22px; transform-origin: center; }
+  .card .icon { width: 80px; height: 80px; flex: none; }
+  .card .txt { font-size: 42px; letter-spacing: 1px; line-height: 1; position: relative; }
+  .card .sub { display: block; font-family: "Segoe UI", Arial, sans-serif; font-weight: 700; font-size: 17px;
+               letter-spacing: 2px; color: #9FF3FF; margin-top: 9px; }
+  #c-sub   { left: 390px;  animation: active-1 var(--t) infinite; }
+  #c-like  { left: 805px;  animation: active-2 var(--t) infinite; }
+  #c-share { left: 1220px; animation: active-3 var(--t) infinite; }
+  @keyframes active-1 { 0%, 31% { transform: scale(1.06); opacity: 1; border-color: var(--pink); box-shadow: 0 0 28px rgba(255,46,136,.6); }
+                        36%, 95% { transform: scale(.94); opacity: .45; } 100% { transform: scale(1.06); opacity: 1; } }
+  @keyframes active-2 { 0%, 30% { transform: scale(.94); opacity: .45; }
+                        35%, 64% { transform: scale(1.06); opacity: 1; border-color: var(--cyan); box-shadow: 0 0 28px rgba(0,229,255,.55); }
+                        69%, 100% { transform: scale(.94); opacity: .45; } }
+  @keyframes active-3 { 0%, 63% { transform: scale(.94); opacity: .45; }
+                        68%, 96% { transform: scale(1.06); opacity: 1; border-color: var(--purple); box-shadow: 0 0 28px rgba(124,77,255,.7); }
+                        100% { transform: scale(.94); opacity: .45; } }
+
+  /* subscribe: red button turns grey "subscribed" after the click, bell rings */
+  .subbtn { position: absolute; left: 0; top: 0; padding: 9px 15px; border-radius: 11px; font-size: 25px; white-space: nowrap; }
+  .subbtn.a { background: #ff1f3d; box-shadow: 0 0 14px rgba(255,31,61,.7); }
+  .subbtn.b { background: #3a3d52; color: #d6d8e6; display: none; }
+  #c-sub.done .subbtn.a { display: none; }
+  #c-sub.done .subbtn.b { display: inline-block; }
+  .subwrap { position: relative; width: 230px; height: 52px; }
+  .bell { transform-origin: 50% 10%; animation: ring var(--t) infinite; }
+  @keyframes ring { 0%, 10% { transform: rotate(0); } 12% { transform: rotate(22deg); } 14% { transform: rotate(-20deg); }
+                    16% { transform: rotate(16deg); } 18% { transform: rotate(-12deg); } 20% { transform: rotate(6deg); } 22%, 100% { transform: rotate(0); } }
+
+  /* like: thumb pops and turns cyan, burst ring */
+  .thumb { transform-origin: center; animation: pop var(--t) infinite; }
+  @keyframes pop { 0%, 37% { transform: scale(1); } 39% { transform: scale(.7); } 42% { transform: scale(1.35); } 45%, 100% { transform: scale(1); } }
+  .thumb path { animation: likecolor var(--t) infinite; }
+  @keyframes likecolor { 0%, 38.9% { fill: #fff; } 39%, 96% { fill: var(--cyan); } 97%, 100% { fill: #fff; } }
+  .burst { transform-origin: center; opacity: 0; animation: burst var(--t) infinite; }
+  @keyframes burst { 0%, 39% { opacity: 0; transform: scale(.4); } 40% { opacity: 1; transform: scale(.6); } 48%, 100% { opacity: 0; transform: scale(1.6); } }
+
+  /* share: arrow flies out and back */
+  .arrow { animation: fly var(--t) infinite; }
+  @keyframes fly { 0%, 71% { transform: translate(0,0); } 74% { transform: translate(10px,-10px); } 77% { transform: translate(0,0); }
+                   80% { transform: translate(10px,-10px); } 83%, 100% { transform: translate(0,0); } }
+
+  /* cursor that clicks each card */
+  .cursor { position: absolute; width: 44px; height: 54px; left: 610px; top: 200px; animation: cur-move var(--t) infinite; filter: drop-shadow(0 3px 4px rgba(0,0,0,.7)); }
+  .cursor svg { transform-origin: 20% 10%; animation: cur-click var(--t) infinite; }
+  @keyframes cur-move {
+    0%   { left: 610px;  top: 200px; opacity: 0; }
+    3%   { opacity: 1; }
+    8%   { left: 595px;  top: 70px; }
+    30%  { left: 595px;  top: 70px; }
+    36%  { left: 865px;  top: 88px; }
+    63%  { left: 865px;  top: 88px; }
+    69%  { left: 1280px; top: 88px; }
+    92%  { left: 1280px; top: 88px; opacity: 1; }
+    97%  { left: 1295px; top: 200px; opacity: 0; }
+    100% { left: 610px;  top: 200px; opacity: 0; }
+  }
+  @keyframes cur-click { 0%, 9% { transform: scale(1); } 10% { transform: scale(.8); } 11.5%, 38% { transform: scale(1); }
+                         39% { transform: scale(.8); } 40.5%, 72% { transform: scale(1); } 73% { transform: scale(.8); } 74.5%, 100% { transform: scale(1); } }
+  /* click ripple */
+  .ripple { position: absolute; width: 60px; height: 60px; margin: -30px 0 0 -30px; border-radius: 50%;
+            border: 3px solid #fff; opacity: 0; }
+  .ripple.r1 { left: 597px;  top: 72px; animation: rip1 var(--t) infinite; }
+  .ripple.r2 { left: 867px;  top: 90px; animation: rip2 var(--t) infinite; }
+  .ripple.r3 { left: 1282px; top: 90px; animation: rip3 var(--t) infinite; }
+  @keyframes rip1 { 0%, 10% { opacity: 0; transform: scale(.3); } 10.5% { opacity: 1; } 16%, 100% { opacity: 0; transform: scale(1.8); } }
+  @keyframes rip2 { 0%, 39% { opacity: 0; transform: scale(.3); } 39.5% { opacity: 1; } 45%, 100% { opacity: 0; transform: scale(1.8); } }
+  @keyframes rip3 { 0%, 73% { opacity: 0; transform: scale(.3); } 73.5% { opacity: 1; } 79%, 100% { opacity: 0; transform: scale(1.8); } }
+
+  .thanks { position: absolute; left: 1640px; right: 10px; top: 40px; text-align: center; font-size: 26px; letter-spacing: 2px; line-height: 1.2;
+            color: #9FF3FF; text-shadow: 0 0 12px rgba(0,229,255,.7); animation: glowpulse 2.5s ease-in-out infinite; }
+  .thanks small { display: block; font-family: "Segoe UI", Arial, sans-serif; font-weight: 700; font-size: 16px; letter-spacing: 4px;
+                  color: #FF6FB5; margin-top: 8px; text-shadow: none; }
+  @keyframes glowpulse { 50% { text-shadow: 0 0 22px rgba(0,229,255,1); } }
+</style>
+</head>
+<body>
+<div class="panel">
+  <svg class="hexbg" width="1920" height="180">
+    <defs><pattern id="hx" width="60" height="104" patternUnits="userSpaceOnUse">
+      <path d="M30,0 L60,17 L60,52 L30,69 L0,52 L0,17 Z M30,69 L30,104" fill="none" stroke="#7C4DFF" stroke-opacity=".18" stroke-width="1.5"/>
+    </pattern></defs>
+    <rect width="1920" height="180" fill="url(#hx)"/>
+  </svg>
+
+  <iframe class="logo" src="jx-logo-animated.html" scrolling="no" allowtransparency="true"></iframe>
+
+  <div class="live"><i></i>LIVE</div>
+
+  <!-- subscribe -->
+  <div class="card" id="c-sub">
+    <svg class="icon" viewBox="0 0 72 72">
+      <g class="bell">
+        <path d="M36 8c-11 0-19 8.5-19 20v14l-6 8v3h50v-3l-6-8V28c0-11.5-8-20-19-20z" fill="#fff"/>
+        <circle cx="36" cy="60" r="7" fill="#fff"/>
+      </g>
+    </svg>
+    <div>
+      <div class="subwrap">
+        <span class="subbtn a">SUBSCRIBE</span>
+        <span class="subbtn b">SUBSCRIBED ✓</span>
+      </div>
+      <span class="sub">+ HIT THE BELL</span>
+    </div>
+  </div>
+
+  <!-- like -->
+  <div class="card" id="c-like">
+    <svg class="icon" viewBox="0 0 72 72" style="overflow:visible">
+      <circle class="burst" cx="36" cy="36" r="34" fill="none" stroke="#00E5FF" stroke-width="4" stroke-dasharray="6 8"/>
+      <g class="thumb">
+        <path d="M8 32h12v32H8z M24 62V32l14-24c5 0 8 3 7 8l-3 12h17c4 0 7 4 6 8l-5 22c-1 3-3 4-6 4z" fill="#fff"/>
+      </g>
+    </svg>
+    <div class="txt">LIKE<span class="sub">IF YOU'RE ENJOYING IT</span></div>
+  </div>
+
+  <!-- share -->
+  <div class="card" id="c-share">
+    <svg class="icon" viewBox="0 0 72 72">
+      <path d="M10 58c4-18 16-28 34-28V18l20 18-20 18V42c-14 0-26 4-34 16z" fill="#fff" class="arrow"/>
+    </svg>
+    <div class="txt">SHARE<span class="sub">WITH YOUR FRIENDS</span></div>
+  </div>
+
+  <div class="ripple r1"></div><div class="ripple r2"></div><div class="ripple r3"></div>
+
+  <div class="cursor">
+    <svg width="44" height="54" viewBox="0 0 44 54">
+      <path d="M4 2 L4 44 L15 34 L23 52 L31 48 L23 31 L38 31 Z" fill="#fff" stroke="#06070f" stroke-width="3" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <div class="thanks">THANKS FOR WATCHING<small>JX GAMING</small></div>
+</div>
+<script>
+  // subscribe button flips to "subscribed" when the cursor clicks it (10% of the 12s loop), resets just before the loop ends
+  var sub = document.getElementById('c-sub');
+  function cycle() {
+    sub.classList.remove('done');
+    setTimeout(function () { sub.classList.add('done'); }, 1200);
+    setTimeout(function () { sub.classList.remove('done'); }, 11600);
+  }
+  cycle();
+  sub.addEventListener('animationiteration', function (e) { if (e.target === sub) cycle(); });
+</script>
+</body>
+</html>
