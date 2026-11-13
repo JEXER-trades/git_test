@@ -1,0 +1,18 @@
+{
+  "name": "albgym-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ALBGYM St. Blasien – Website",
+  "type": "module",
+  "scripts": {
+    "images": "node scripts/images.mjs",
+    "build": "node scripts/build.mjs",
+    "build:all": "npm run images && npm run build",
+    "serve": "php -S 127.0.0.1:8080 -t dist scripts/router.php"
+  },
+  "devDependencies": {
+    "@fontsource-variable/fraunces": "5.3.0",
+    "@fontsource-variable/inter": "5.3.0",
+    "sharp": "0.33.5"
+  }
+}

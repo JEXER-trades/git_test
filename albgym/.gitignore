@@ -1,0 +1,8 @@
+node_modules/
+public/api/config.php
+public/api/storage/*
+!public/api/storage/.htaccess
+dist/api/config.php
+dist/api/storage/*
+!dist/api/storage/.htaccess
+.DS_Store

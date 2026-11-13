@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /danke/
+Disallow: /anfrage-fehler/
+
+Sitemap: https://albgym.de/sitemap.xml

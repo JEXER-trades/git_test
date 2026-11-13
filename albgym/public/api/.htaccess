@@ -1,0 +1,8 @@
+# Only the endpoint itself is reachable; config, secrets and logs are not.
+<FilesMatch "^(config|config\.sample)\.php$">
+  Require all denied
+</FilesMatch>
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^storage/ - [F,L]
+</IfModule>

@@ -1,0 +1,60 @@
+# ALBGYM – Apache configuration
+Options -Indexes
+DirectoryIndex index.html index.php
+ErrorDocument 404 /404.html
+AddDefaultCharset utf-8
+AddType image/avif .avif
+AddType image/webp .webp
+AddType font/woff2 .woff2
+AddType application/manifest+json .webmanifest
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Force HTTPS and canonical host (albgym.de, without www)
+  RewriteCond %{HTTPS} !=on [OR]
+  RewriteCond %{HTTP_HOST} ^www\. [NC]
+  RewriteRule ^ https://albgym.de%{REQUEST_URI} [L,R=301]
+
+  # Old URLs → new structure (SEO)
+  RewriteRule ^fitness/?$ /training/fitness-krafttraining/ [R=301,L]
+  RewriteRule ^betreuung/?$ /training/personal-training/ [R=301,L]
+  RewriteRule ^personal-training/?$ /training/personal-training/ [R=301,L]
+  RewriteRule ^ruecken-und-gelenke/?$ /gesundheit/ruecken/ [R=301,L]
+  RewriteRule ^bessere-figur-and-abnehmen/?$ /gesundheit/figur-ernaehrung/ [R=301,L]
+  RewriteRule ^jugendtraining/?$ /training/fitness-krafttraining/#jugend [R=301,L,NE]
+  RewriteRule ^kursplan/?$ /kurse/ [R=301,L]
+  RewriteRule ^uber-uns/?$ /ueber-uns/ [R=301,L]
+  RewriteRule ^neueroeffnung/?$ /albgym-3-0/ [R=301,L]
+  RewriteRule ^news(/.*)?$ /albgym-3-0/ [R=301,L]
+  RewriteRule ^mitglieds-check/?$ /mitgliedschaft/ [R=301,L]
+  RewriteRule ^baustellen-deal/?$ /mitgliedschaft/ [R=301,L]
+  RewriteRule ^hausordnung/?$ /impressum/ [R=301,L]
+
+  # Trailing slash for directories
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_URI} !/$
+  RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}/index.html -f
+  RewriteRule ^(.*)$ /$1/ [R=301,L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+  Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; frame-src https://www.google.com https://maps.google.com; connect-src 'self'; form-action 'self'; base-uri 'self'; frame-ancestors 'self'"
+  <FilesMatch "\.(avif|webp|jpg|png|svg|woff2|ico)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(html|xml|txt|webmanifest)$">
+    Header set Cache-Control "public, max-age=600, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript text/javascript application/json image/svg+xml application/xml text/xml text/plain application/manifest+json
+</IfModule>
