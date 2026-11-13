@@ -37,7 +37,7 @@ export const mapBlock = () => `<div class="map" data-map="${esc(site.mapsEmbed)}
   <div class="map__ph">
     ${icon.pin}
     <p><strong style="color:var(--bone);display:block;font-weight:500;margin-bottom:.4rem">${site.street} · ${site.zip} ${site.city}</strong>Beim Laden der Karte werden Daten (u. a. deine IP-Adresse) an Google übertragen. Mehr dazu in der <a href="${R.datenschutz}#google-maps">Datenschutzerklärung</a>.</p>
-    <div class="cta-row" style="justify-content:center;margin-top:.5rem"><button class="btn btn--primary btn--sm" type="button" data-map-load><span>Karte laden</span></button><a class="btn btn--ghost-light btn--sm" href="${site.mapsDirections}" target="_blank" rel="noopener"><span>Route in Google Maps</span></a></div>
+    <div class="cta-row" style="justify-content:center;margin-top:.5rem">${process.env.PREVIEW ? '' : '<button class="btn btn--primary btn--sm" type="button" data-map-load><span>Karte laden</span></button>'}<a class="btn btn--ghost-light btn--sm" href="${site.mapsDirections}" target="_blank" rel="noopener"><span>Route in Google Maps</span></a></div>
     <label class="fine" style="display:flex;gap:.5rem;justify-content:center;align-items:center;color:var(--stone-2)"><input type="checkbox" id="map-remember"> Karten künftig automatisch laden</label>
   </div>
 </div>`;

@@ -207,6 +207,13 @@
       const status = $('.form__status', form);
       const bad = fields.filter((el) => !validate(el));
       if (bad.length) { bad[0].focus(); return; }
+      if (window.ALBGYM_PREVIEW) {
+        form.classList.add('is-done');
+        status.className = 'form__status is-ok';
+        status.innerHTML = '<strong>Vorschau – es wurde nichts gesendet.</strong>Deine Angaben sind gültig. Auf albgym.de geht die Anfrage an dieser Stelle direkt an das ALBGYM-Team.';
+        status.focus();
+        return;
+      }
       form.classList.add('is-sending');
       status.className = 'form__status';
       status.innerHTML = 'Wird gesendet …';

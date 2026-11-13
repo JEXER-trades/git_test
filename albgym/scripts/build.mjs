@@ -13,7 +13,7 @@ import * as more from '../src/pages/more.mjs';
 import * as legal from '../src/pages/legal.mjs';
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
-const DIST = path.join(ROOT, 'dist');
+const DIST = process.env.OUT ? path.resolve(process.env.OUT) : path.join(ROOT, 'dist');
 
 const pages = [
   home,

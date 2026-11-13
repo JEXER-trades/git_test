@@ -62,7 +62,17 @@ export function pic(key, { alt, sizes = '100vw', cls = '', eager = false, priori
   const set = (fmt) => m.widths.map((w) => `/img/${key}-${w}.${fmt} ${w}w`).join(', ');
   const fallbackW = m.widths.find((w) => w >= 1200) || m.widths[m.widths.length - 1];
   const style = `--tone:${m.tone}${ratio ? `;aspect-ratio:${ratio}` : ''}`;
+  if (process.env.PREVIEW) {
+    // Lightweight preview build (sandboxed hosting): WebP only, two sizes.
+    const ws = previewWidths(m);
+    return `<picture class="pic ${cls}" style="${style}"><img src="/img/${key}-${ws[ws.length - 1]}.webp" srcset="${ws.map((w) => `/img/${key}-${w}.webp ${w}w`).join(', ')}" sizes="${sizes}" width="${m.w}" height="${m.h}" alt="${esc(alt)}"${eager ? '' : ' loading="lazy"'} decoding="async"${priority ? ' fetchpriority="high"' : ''}></picture>`;
+  }
   return `<picture class="pic ${cls}" style="${style}"><source type="image/avif" srcset="${set('avif')}" sizes="${sizes}"><source type="image/webp" srcset="${set('webp')}" sizes="${sizes}"><img src="/img/${key}-${fallbackW}.jpg" srcset="${set('jpg')}" sizes="${sizes}" width="${m.w}" height="${m.h}" alt="${esc(alt)}"${eager ? '' : ' loading="lazy"'} decoding="async"${priority ? ' fetchpriority="high"' : ''}></picture>`;
+}
+export function previewWidths(m) {
+  const small = m.widths.find((w) => w >= 800) || m.widths[m.widths.length - 1];
+  const large = m.widths.find((w) => w >= 1600) || m.widths[m.widths.length - 1];
+  return [...new Set([small, large])];
 }
 export const imgUrl = (key, w = 1200) => {
   const m = images[key];
